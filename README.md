@@ -21,7 +21,7 @@ Functioning:
 
 Download the project to a folder on disk.
 
-Download to that folder the roboflow files that will be used for training:
+Download to that folder the roboflow files that will be used for training by yolov8:
 
 https://public.roboflow.com/object-detection/license-plates-us-eu/3
 
