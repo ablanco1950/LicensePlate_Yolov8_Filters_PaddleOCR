@@ -545,7 +545,9 @@ def loadimagesRoboflow (dirname):
                  License=filename[:len(filename)-4]
                                  
                  image = cv2.imread(filepath)
-                 #image=cv2.resize(image,(416,416)) 
+                 # Roboflow images are (416,416)
+                 image=cv2.resize(image,(416,416)) 
+                 # kaggle images
                  #image=cv2.resize(image, (640,640))
                  
                  #Color Balance
