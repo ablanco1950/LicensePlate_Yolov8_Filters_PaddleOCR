@@ -79,6 +79,8 @@ https://medium.com/@chanon.krittapholchai/build-object-detection-gui-with-yolov8
 
 https://medium.com/@alimustoofaa/how-to-load-model-yolov8-onnx-cv2-dnn-3e176cde16e6
 
+https://medium.com/adevinta-tech-blog/text-in-image-2-0-improving-ocr-service-with-paddleocr-61614c886f93
+
  https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters
 
 Filters
