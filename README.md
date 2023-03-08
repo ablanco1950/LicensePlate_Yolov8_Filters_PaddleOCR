@@ -41,7 +41,7 @@ run the program
 
 LicensePlateYolov8Train.py
 
-which only has 4 lines, but the line numbered 11 should indicate the full path where the license_data.yaml file is located.
+which only has 4 lines, but the line numbered 7 should indicate the full path where the license_data.yaml file is located.
 
 Running from a simple laptop, the 100 epochs of the program will take a long time, but you can always pull the lid off the laptop and
 continue the next day. As obtaining best.pt is problematic, the one used in the project tests is attached, adjusting the route of instruction 15 in GetNumberSpanishLicensePlate_Yolov8_MaxFilters
@@ -50,23 +50,24 @@ As a result, inside the download folder, the directory runs\detect\trainN\weight
   the last train directory created) in which the best.pt file is located, which is the base of the model and
   which is referenced in line 15 of the GetNumberSpanishLicensePlate_Yolov8_MaxFilters.py program (modify the route, the name of trainN, so that it points to the last train and best.pt created
 
-As obtaining best.pt is problematic, the one used in the project tests is attached,it must be  adjusted the route of instruction 15 in GetNumberSpanishLicensePlate_Yolov8_MaxFilters.py
+As obtaining best.pt is problematic, the one used in the project tests is attached,it must be  adjusted the route of instruction 17 in GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
 
 Run the program.
 
-GetNumberSpanishLicensePlate_Yolov8_MaxFilters.py
+GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
 
 The car license plates and successes or failures through the different filters appear on the screen.
 
 The LicenseResults.txt file lists the car license plates with their corresponding recognized ones.
 
-In a test with 21 images, 18 hits are achieved, better than the 17 achieved with car licenses detected with yolo
- and manual labeling in the LicensePlate_Labeled_MaxFilters project https://github.com/ablanco1950/LicensePlate_Labeled_MaxFilters and
-better than with wpod_net https://github.com/ablanco1950/LicensePlate_Wpod-net_MaxFilters .
+In a test with 117 images, 99 hits are achieved
 
-Also is attached GetNumberInternationalLicensePlate_Yolov8_MaxFiltersA.py, that tries to detect licenses plates in any format, and the hit rate is the same 70 hits in 117 than  in https://github.com/ablanco1950/LicensePlate_Labeled_MaxFilters. In this case, the success rate drops because it is not possible to eliminate pytesseract outputs that do not comply with a certain format, so the correct outputs are not enough compared to the erroneous ones to establish the correct one.
+Changing the path in instruction 12, any other directory of images may be tested
+
 
 References:
+
+https://pypi.org/project/paddleocr/
 
 https://learnopencv.com/ultralytics-yolov8/#How-to-Use-YOLOv8?
 
@@ -77,6 +78,8 @@ https://docs.ultralytics.com/python/
 https://medium.com/@chanon.krittapholchai/build-object-detection-gui-with-yolov8-and-pysimplegui-76d5f5464d6c
 
 https://medium.com/@alimustoofaa/how-to-load-model-yolov8-onnx-cv2-dnn-3e176cde16e6
+
+ https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters
 
 Filters
 
