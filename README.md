@@ -47,10 +47,10 @@ Running from a simple laptop, the 100 epochs of the program will take a long tim
 continue the next day. As obtaining best.pt is problematic, the one used in the project tests is attached, adjusting the route of instruction 15 in GetNumberSpanishLicensePlate_Yolov8_MaxFilters
 
 As a result, inside the download folder, the directory runs\detect\trainN\weights( where in trainN, N indicates
-  the last train directory created) in which the best.pt file is located, which is the base of the model and
-  which is referenced in line 15 of the GetNumberSpanishLicensePlate_Yolov8_MaxFilters.py program (modify the route, the name of trainN, so that it points to the last train and best.pt created
+ the last train directory created, in which the best.pt file is located), best.pt is the base of the model and
+ is referenced in line 17 of the GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py program (modify the route, the name of trainN, so that it points to the last train and best.pt created
 
-As obtaining best.pt is problematic, the one used in the project tests is attached,it must be  adjusted the route of instruction 17 in GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
+As obtaining best.pt is problematic, the one used in the project tests is attached,it must be  adjusted the route in instruction 17 in GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
 
 Run the program.
 
