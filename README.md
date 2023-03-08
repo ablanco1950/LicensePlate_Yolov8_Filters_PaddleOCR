@@ -41,7 +41,7 @@ run the program
 
 LicensePlateYolov8Train.py
 
-which only has 4 lines, but the line numbered 7 should indicate the full path where the license_data.yaml file is located.
+which only has a few lines, but the line numbered 7 should indicate the full path where the license_data.yaml file is located.
 
 Running from a simple laptop, the 100 epochs of the program will take a long time, but you can always pull the lid off the laptop and
 continue the next day. As obtaining best.pt is problematic, the one used in the project tests is attached, adjusting the route of instruction 15 in GetNumberSpanishLicensePlate_Yolov8_MaxFilters
