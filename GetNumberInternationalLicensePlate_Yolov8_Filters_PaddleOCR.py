@@ -23,7 +23,7 @@ class_list = model.model.names
 
 
 ######################################################################
-from paddleocr import PaddleOCR,draw_ocr
+from paddleocr import PaddleOCR
 # Paddleocr supports Chinese, English, French, German, Korean and Japanese.
 # You can set the parameter `lang` as `ch`, `en`, `french`, `german`, `korean`, `japan`
 # to switch the language model in order.
@@ -285,7 +285,7 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
     #print("Car" + str(NumberImageOrder) + " Brillo : " +str(SumBrightnessLic) +   
     #      " Desviacion : " + str(DesvLic))
     if (rotation > 0 and rotation < 30)  or (rotation < 0 and rotation > -30):
-      
+        print(License + " rotate "+ str(rotation))
         gray=imutils.rotate(gray,angle=rotation)
     
     
@@ -301,70 +301,14 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
     Resize_xfactor=1.5
     Resize_yfactor=1.5
     
-    # rotate the image if is necessary
-    
-    rotation, spectrum, frquency =GetRotationImage(gray)
-    #print("rotation = "+ str(rotation))
-    rotation=90 - rotation
-    #print("Car" + str(NumberImageOrder) + " Brillo : " +str(SumBrightnessLic) +   
-    #      " Desviacion : " + str(DesvLic))
-    
-    if (rotation > 0 and rotation < 30)  or (rotation < 0 and rotation > -30):
-        #cv2.imshow("Gray", gray)
-        #cv2.waitKey(0)
-        print(License + " rotate "+ str(rotation))
-        gray=imutils.rotate(gray,angle=rotation)
-        #cv2.imshow("Gray", gray)
-        #v2.waitKey(0)
-    
-    
+   
     TabLicensesFounded=[]
     ContLicensesFounded=[]
     
     TotHits=0
     
-    text, Accuraccy = GetPaddleOcr(gray)
-    text=ProcessText(text)
-    if ProcessText(text) != "":
-     
-      ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
-      if text==License:
-         print(text +  "  Hit with PaddleOcr  " + "Accuracy=" + str(Accuraccy))
-         TotHits=TotHits+1
-         TabTotHitsFilter[j]=TabTotHitsFilter[j]+1
-      else:
-          print(License + " detected with PaddleOcr as  " + text  )
-          TabTotFailuresFilter[j]=TabTotFailuresFilter[j]+1
-      # if accuraccy > 0,95, assume is correct and avoid
-      # filter pipeline
-      if  Accuraccy > 0.95 and text != "":
-           print("Accuracy=" + str(Accuraccy))
-           return TabLicensesFounded, ContLicensesFounded
-   
-    #https://mattmaulion.medium.com/the-digital-image-an-introduction-to-image-processing-basics-fbdf9fd7f462
-    from skimage import img_as_uint
-    # for this demo, set threshold to average value
-    gray1 = img_as_uint(gray > gray.mean())
-    text, Accuraccy = GetPaddleOcr(gray1)
-    
-    text = ''.join(char for char in text if char.isalnum()) 
-    text=ProcessText(text)
-    if ProcessText(text) != "":
-    
-        ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
-        if text==License:
-           print(text +  "  Hit with threshold media"  )
-           TotHits=TotHits+1
-        else:
-            print(License + " detected with threshold media" + text)
-    
-   
     # https://medium.com/practical-data-science-and-engineering/image-kernels-88162cb6585d
-    kernel = np.array([[0, -1, 0],
-                   [-1, 5, -1],
-                   [0, -1, 0]])
    
-    
     kernel = np.array([[0, -1, 0],
                    [-1,10, -1],
                    [0, -1, 0]])
@@ -405,16 +349,10 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
                #TotHits=TotHits+1
             else:
                 print(License + " detected with CLAHE and THRESH_TOZERO as "+ text) 
-   
-    ####################################################
-    # experimental formula based on the brightness
-    # of the whole image 
-    ####################################################
-   
-    SumBrightness=np.sum(gray)  
-    threshold=(SumBrightness/177600.00) 
-   
-    for z in range(5,8):
+    
+    
+    
+    for z in range(5,6):
     
        kernel = np.array([[0,-1,0], [-1,z,-1], [0,-1,0]])
        gray1 = cv2.filter2D(gray, -1, kernel)
@@ -468,7 +406,7 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
         else:
             print(Licenses[i] + " detected with Stable and THRESH_TRUNC as "+ text)         
      
-     
+    
     ####################################################
     # experimental formula based on the brightness
     # of the whole image 
@@ -493,26 +431,7 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
         else:
             print(Licenses[i] + " detected with Brightness and THRESH_TOZERO as "+ text)
     
-   
-    #https://anishgupta1005.medium.com/building-an-optical-character-recognizer-in-python-bbd09edfe438
      
-    bilateral = cv2.bilateralFilter(gray,9,75,75)
-    median = cv2.medianBlur(bilateral,3)
-    
-    adaptive_threshold_mean = cv2.adaptiveThreshold(median,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
-        cv2.THRESH_BINARY,11,2)
-    text, Accuraccy = GetPaddleOcr(adaptive_threshold_mean)    
-    
-    text = ''.join(char for char in text if char.isalnum())
-    if Detect_International_LicensePlate(text)== 1:
-        ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
-        if text==Licenses[i]:
-           print(text + "  Hit with  adaptive_threshold_mean " )
-           TotHits=TotHits+1
-        else:
-            print(Licenses[i] + " detected with  adaptive_threshold_mean  "+ text)          
-            
-       
     ################################################################
     return TabLicensesFounded, ContLicensesFounded
 
@@ -550,57 +469,12 @@ def loadimagesRoboflow (dirname):
                  # kaggle images
                  #image=cv2.resize(image, (640,640))
                  
-                 #Color Balance
-                #https://blog.katastros.com/a?ID=01800-4bf623a1-3917-4d54-9b6a-775331ebaf05
-                
-                 img = image
-                    
-                 r, g, b = cv2.split(img)
-                
-                 r_avg = cv2.mean(r)[0]
-                
-                 g_avg = cv2.mean(g)[0]
-                
-                 b_avg = cv2.mean(b)[0]
-                
-                 
-                 # Find the gain occupied by each channel
-                
-                 k = (r_avg + g_avg + b_avg)/3
-                
-                 kr = k/r_avg
-                
-                 kg = k/g_avg
-                
-                 kb = k/b_avg
-                
-                 
-                 r = cv2.addWeighted(src1=r, alpha=kr, src2=0, beta=0, gamma=0)
-                
-                 g = cv2.addWeighted(src1=g, alpha=kg, src2=0, beta=0, gamma=0)
-                
-                 b = cv2.addWeighted(src1=b, alpha=kb, src2=0, beta=0, gamma=0)
-                
-                 
-                 balance_img = cv2.merge([b, g, r])
-                 
-                 image=balance_img
-                 
                  images.append(image)
                  Licenses.append(License)
                  
                  Cont+=1
      
      return images, Licenses
-
-
-# COPIED FROM https://programmerclick.com/article/89421544914/
-#def gamma_trans (img, gamma): # procesamiento de la función gamma
-#         gamma_table = [np.power (x / 255.0, gamma) * 255.0 for x in range (256)] # Crear una tabla de mapeo
-#         gamma_table = np.round (np.array (gamma_table)). astype (np.uint8) #El valor del color es un número entero
-#         return cv2.LUT (img, gamma_table) #Tabla de búsqueda de color de imagen. Además, se puede diseñar un algoritmo adaptativo de acuerdo con el principio de homogeneización de la intensidad de la luz (color).
-#def nothing(x):
-#    pass
 
 def Detect_International_LicensePlate(Text):
     if len(Text) < 3 : return -1
