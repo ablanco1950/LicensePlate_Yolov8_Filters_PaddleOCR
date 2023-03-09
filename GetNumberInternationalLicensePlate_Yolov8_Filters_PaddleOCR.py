@@ -383,7 +383,8 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
           
     text = ''.join(char for char in text if char.isalnum())
     
-    if Detect_International_LicensePlate(text)== 1:
+    text=ProcessText(text)
+    if ProcessText(text) != "":
             TabLicensesFounded, ContLicensesFounded =ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
             if text==Licenses[i]:
                print(text + "  Hit with Otsu's thresholding of cv2 and THRESH_TRUNC" )
@@ -398,7 +399,8 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
     text, Accuraccy = GetPaddleOcr(gray1)
    
     text = ''.join(char for char in text if char.isalnum())
-    if Detect_International_LicensePlate(text)== 1:
+    text=ProcessText(text)
+    if ProcessText(text) != "":
         ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)    
         if text==Licenses[i]:
             print(text + "  Hit with Stable and THRESH_TRUNC" )
@@ -423,7 +425,8 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
    
     text = ''.join(char for char in text if char.isalnum())
     
-    if Detect_International_LicensePlate(text)== 1:
+    text=ProcessText(text)
+    if ProcessText(text) != "":
         ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
         if text==Licenses[i]:
            print(text + "  Hit with Brightness and THRESH_TOZERO" )
