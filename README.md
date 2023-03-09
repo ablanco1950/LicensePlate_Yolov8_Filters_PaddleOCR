@@ -43,10 +43,10 @@ LicensePlateYolov8Train.py
 
 which only has a few lines, but the line numbered 7 should indicate the full path where the license_data.yaml file is located.
 
-Running from a simple laptop, the 100 epochs of the program will take a long time, but you can always pull the lid off the laptop and
+Running from a simple laptop, the 100 epochs of the program will take a long time, but you can always lower the cover of the laptop and
 continue the next day. As obtaining best.pt is problematic, the one used in the project tests is attached, adjusting the route of instruction 15 in GetNumberSpanishLicensePlate_Yolov8_MaxFilters
 
-As a result, inside the download folder, the directory runs\detect\trainN\weights( where in trainN, N indicates
+As a result, inside the project folder, the directory runs\detect\trainN\weights( where in trainN, N indicates
  the last train directory created, in which the best.pt file is located), best.pt is the base of the model and
  is referenced in line 17 of the GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py program (modify the route, the name of trainN, so that it points to the last train and best.pt created
 
@@ -60,7 +60,7 @@ The car license plates and successes or failures through the different filters a
 
 The LicenseResults.txt file lists the car license plates with their corresponding recognized ones.
 
-In a test with 117 images, 99 hits are achieved
+In a test with 117 images, 100 hits are achieved
 
 Changing the path in instruction 12, any other directory of images may be tested
 
