@@ -62,7 +62,7 @@ The LicenseResults.txt file lists the car license plates with their correspondin
 
 In a test with 117 images, 100 hits are achieved
 
-Changing the path in instruction 12, any other directory of images may be tested
+Changing the path in instruction 12, any other directory of images may be tested (In this case, the LicenseResults.txt file should be consulted to point to the license plates, since the files would not been named with the license number, as in test6Training occurs, it cannot be determined if the assignment has been correct automatically)
 
 
 References:
