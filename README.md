@@ -83,7 +83,7 @@ https://medium.com/adevinta-tech-blog/text-in-image-2-0-improving-ocr-service-wi
 
  https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters
 
-Filters
+Filters:
 
 https://gist.github.com/endolith/334196bac1cac45a4893#
 
