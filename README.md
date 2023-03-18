@@ -148,6 +148,8 @@ https://datasmarts.net/es/como-usar-el-detector-de-puntos-clave-mser-en-opencv/
 
 https://felipemeganha.medium.com/detecting-handwriting-regions-with-opencv-and-python-ff0b1050aa4e
 
+https://github.com/victorgzv/Lighting-correction-with-OpenCV
+
 Projects with videos to download to test:
 
 https://github.com/anmspro/Traffic-Signal-Violation-Detection-System/tree/master/Resources
