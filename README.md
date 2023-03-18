@@ -44,7 +44,7 @@ LicensePlateYolov8Train.py
 which only has a few lines, but the line numbered 7 should indicate the full path where the license_data.yaml file is located.
 
 Running from a simple laptop, the 100 epochs of the program will take a long time, but you can always lower the cover of the laptop and
-continue the next day. As obtaining best.pt is problematic, the one used in the project tests is attached.
+continue the next day (besides, there are only 245 images for training). As obtaining best.pt is problematic, the one used in the project tests is attached.
 
 As a result, inside the project folder, the directory runs\detect\trainN\weights( where in trainN, N indicates
  the last train directory created, in which the best.pt file is located), best.pt is the base of the model and
