@@ -140,3 +140,14 @@ https://anishgupta1005.medium.com/building-an-optical-character-recognizer-in-py
 https://datasmarts.net/es/como-usar-el-detector-de-puntos-clave-mser-en-opencv/
 
 https://felipemeganha.medium.com/detecting-handwriting-regions-with-opencv-and-python-ff0b1050aa4e
+
+Projects with videos to download to test:
+
+https://github.com/anmspro/Traffic-Signal-Violation-Detection-System/tree/master/Resources
+"Traffic IP Camera video.mp4"
+
+https://github.com/hasaan21/Car-Number-Plate-Recognition-Sysytem
+"vid.mp4"
+
+//www.pexels.com/video/video-of-famous-landmark-on-a-city-during-daytime-1721294/
+"Pexels Videos 1721294.mp4"
