@@ -84,12 +84,19 @@ VIDEOLicenseResults,txt with the registration of license plates detected with a 
 VIDEOLicenseSummary.txt with the following results, which seem pretty tight as can be seen visually from the video.
 
 A8254S,637,740.9674367904663
+
 AR606L,4,71.24744486808777
+
 AE670S,5,77.56634569168091
+
 A96886,3,56.16575574874878
+
 A3K961,5,40.13566517829895
+
 A3K96,6,39.33728837966919
+
 A968B6,10,30.00536036491394
+
 AV6190,12,51.083354234695435
 
 The first field is the license plate detected and the second is the number of snapshots of that license plate.
