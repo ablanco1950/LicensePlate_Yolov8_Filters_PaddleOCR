@@ -64,6 +64,42 @@ In a test with 117 images, 100 hits are achieved
 
 By changing the path in instruction 12, any other image directory can be tested (In this case, the LicenseResults.txt file must be consulted to indicate the license plates, since the files are not named with the license number, as in test6Training occurs, it cannot be determined if the assignment was successful automatically)
 
+The video version is also included:
+
+VIDEOGetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
+
+operating on the attached video:
+
+Traffic IP Camera video.mp4
+
+downloaded from project:
+https://github.com/anmspro/Traffic-Signal-Violation-Detection-System/tree/master/Resources
+
+In its execution, on the monitor screen, the detected license plates are detailed with a summary at the end.
+
+Two files are obtained:
+
+VIDEOLicenseResults,txt with the registration of license plates detected with a lot of noise.
+ 
+VIDEOLicenseSummary.txt with the following results, which seem pretty tight as can be seen visually from the video.
+
+A8254S,637,740.9674367904663
+AR606L,4,71.24744486808777
+AE670S,5,77.56634569168091
+A96886,3,56.16575574874878
+A3K961,5,40.13566517829895
+A3K96,6,39.33728837966919
+A968B6,10,30.00536036491394
+AV6190,12,51.083354234695435
+
+The first field is the license plate detected and the second is the number of snapshots of that license plate.
+
+As a maximum number of snapshots of 3 has been set (LimitSnapshot=3 parameter in the program), to avoid noise, the license plate of the APHI88 car that was going faster and that only recorded one snapshot does not appear (it can be checked in the VIDEOLicenseResults,txt logging file)
+
+The program is prepared to run in a time of 800 seconds (parameter: TimeLimit) so you have to wait that time until it ends.
+
+Other test videos can be downloaded from the addresses indicated in the program and in the references section.
+
 
 References:
 
