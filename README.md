@@ -124,7 +124,9 @@ https://medium.com/@alimustoofaa/how-to-load-model-yolov8-onnx-cv2-dnn-3e176cde1
 
 https://medium.com/adevinta-tech-blog/text-in-image-2-0-improving-ocr-service-with-paddleocr-61614c886f93
 
- https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters
+https://machinelearningprojects.net/number-plate-detection-using-yolov7/
+
+https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters
 
 Filters:
 
