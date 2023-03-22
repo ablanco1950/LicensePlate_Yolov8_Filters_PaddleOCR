@@ -152,6 +152,8 @@ https://felipemeganha.medium.com/detecting-handwriting-regions-with-opencv-and-p
 
 https://github.com/victorgzv/Lighting-correction-with-OpenCV
 
+https://medium.com/@yyuanli19/using-mnist-to-visualize-basic-conv-filtering-95d24679643e
+
 Projects with videos to download to test:
 
 https://github.com/anmspro/Traffic-Signal-Violation-Detection-System/tree/master/Resources
