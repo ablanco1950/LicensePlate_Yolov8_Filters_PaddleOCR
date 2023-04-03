@@ -103,7 +103,13 @@ As a maximum number of snapshots of 3 has been set (LimitSnapshot=3 parameter in
 
 Also is produced a summary video: demonstration.mp4
 
+Two videos of test results: demonstration1.mp4 and demonstration2.mp4 are attached.
+
 The program is prepared to run in a time of 800 seconds (parameter: TimeLimit) so you have to wait that time until it ends or press q key.
+
+More precise and exploitable results, although less apparent and more slowly, are obtained by executing:
+
+VIDEOGetNumberInternationalLicensePlate_RoboflowModel_Filters_PaddleOCR.py
 
 Other test videos can be downloaded from the addresses indicated in the program and in the references section.
 
