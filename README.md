@@ -66,7 +66,7 @@ By changing the path in instruction 12, any other image directory can be tested 
 
 The video version is also included:
 
-VIDEOGetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
+VIDEOGetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR_Demonstration.py
 
 operating on the attached video:
 
@@ -77,33 +77,33 @@ https://github.com/anmspro/Traffic-Signal-Violation-Detection-System/tree/master
 
 In its execution, on the monitor screen, the detected license plates are detailed with a summary at the end.
 
-Two files are obtained:
+Three files are obtained:
 
 VIDEOLicenseResults,txt with the registration of license plates detected with a lot of noise.
  
 VIDEOLicenseSummary.txt with the following results, which seem pretty tight as can be seen visually from the video.
 
-A8254S,637,740.9674367904663
+A8254S,145,198.2291808128357
 
-AR606L,4,71.24744486808777
+AR606L,10,31.03719687461853
 
-AE670S,5,77.56634569168091
+AE670S,10,15.752639770507812
 
-A96886,3,56.16575574874878
+A3K96,8,25.679476976394653
 
-A3K961,5,40.13566517829895
+A3K961,3,14.658559083938599
 
-A3K96,6,39.33728837966919
+A968B6,5,7.775115013122559
 
-A968B6,10,30.00536036491394
-
-AV6190,12,51.083354234695435
+AV6190,10,17.38904595375061
 
 The first field is the license plate detected and the second is the number of snapshots of that license plate.
 
-As a maximum number of snapshots of 3 has been set (LimitSnapshot=3 parameter in the program), to avoid noise, the license plate of the APHI88 car that was going faster and that only recorded one snapshot does not appear (it can be checked in the VIDEOLicenseResults,txt logging file)
+As a maximum number of snapshots of 3 has been set (LimitSnapshot=3 parameter in the program), to avoid noise, the license plate of the APHI88 car that was going faster and that only recorded one snapshot does not appear (it can be checked in the VIDEOLicenseResults.txt logging file)
 
-The program is prepared to run in a time of 800 seconds (parameter: TimeLimit) so you have to wait that time until it ends.
+Also is produced a summary video: demonstration.mp4
+
+The program is prepared to run in a time of 800 seconds (parameter: TimeLimit) so you have to wait that time until it ends or press q key.
 
 Other test videos can be downloaded from the addresses indicated in the program and in the references section.
 
