@@ -3,7 +3,7 @@ Recognition of license plate numbers, in any format, by automatic detection with
 
 The main improvement with respect to the project presented before ( https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters) has been the use of paddleocr instead of pytesseract as well as the reduction of the number of filters, some of which although they were right in certain circumstances produced noise in other.
 
-<video src='https://github.com/ablanco1950/LicensePlate_Yolov8_Filters_PaddleOCR/blob/main/demonstration1.mp4' width=180/>
+ <video src='https://github.com/ablanco1950/LicensePlate_Yolov8_Filters_PaddleOCR/blob/main/demonstration1.mp4' width=40>
 
 Requirements:
 
