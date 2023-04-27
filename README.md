@@ -2,6 +2,8 @@
 Recognition of license plate numbers, in any format, by automatic detection with Yolov8, pipeline of filters and  paddleocr as OCR
 
 The main improvement with respect to the project presented before ( https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters) has been the use of paddleocr instead of pytesseract as well as the reduction of the number of filters, some of which although they were right in certain circumstances produced noise in other.
+
+On 04/27/2023, a new version is incorporated that considers license plates with several lines and several license plates in one image.
  
 Requirements:
 
@@ -54,13 +56,13 @@ As obtaining best.pt is problematic, the one used in the project tests is attach
 
 Run the program.
 
-GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
+GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR_V1.py
 
 The car license plates and successes or failures through the different filters appear on the screen.
 
 The LicenseResults.txt file lists the car license plates with their corresponding recognized ones.
 
-In a test with 117 images, 100 hits are achieved
+In a test with 117 images, 105 hits are achieved
 
 By changing the path in instruction 12, any other image directory can be tested (In this case, the LicenseResults.txt file must be consulted to indicate the license plates, since the files are not named with the license number, as in test6Training occurs, it cannot be determined if the assignment was successful automatically)
 
