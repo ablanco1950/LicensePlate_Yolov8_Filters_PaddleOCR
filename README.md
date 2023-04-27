@@ -136,6 +136,8 @@ https://machinelearningprojects.net/number-plate-detection-using-yolov7/
 
 https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters
 
+https://github.com/mrzaizai2k/VIETNAMESE_LICENSE_PLATE
+
 Filters:
 
 https://gist.github.com/endolith/334196bac1cac45a4893#
