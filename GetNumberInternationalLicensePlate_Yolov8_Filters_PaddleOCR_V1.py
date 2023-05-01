@@ -216,6 +216,19 @@ def GetPaddleOcr(img):
     
     @author: https://pypi.org/project/paddleocr/ (adapted from)
     """
+    """
+    from google.cloud import vision    
+       
+    client = vision.ImageAnnotatorClient()    
+            
+       
+    #image = vision.Image(content=content)    
+    
+    response = client.text_detection(image=img) 
+        
+    texts = response.text_annotations   
+    return texts, 0.5
+    """
     
     cv2.imwrite("gray.jpg",img)
     img_path = 'gray.jpg'
@@ -367,12 +380,16 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
     
    
     # https://medium.com/practical-data-science-and-engineering/image-kernels-88162cb6585d
-   
+    kernel = np.ones((2,2),np.uint8)
+    
+    gray1 = cv2.GaussianBlur(gray, (3, 3), 0)
+    
+    gray1 = cv2.dilate(gray1,kernel,iterations = 1)
     kernel = np.array([[0, -1, 0],
                    [-1,10, -1],
                    [0, -1, 0]])
-    dst = cv2.filter2D(gray, -1, kernel)
-    img_concat = cv2.hconcat([gray, dst])
+    dst = cv2.filter2D(gray1, -1, kernel)
+    img_concat = cv2.hconcat([gray1, dst])
     text, Accuraccy = GetPaddleOcr(img_concat)
     text = ''.join(char for char in text if char.isalnum())
     text=ProcessText(text)
@@ -646,7 +663,8 @@ with open( "LicenseResults.txt" ,"w") as  w:
                 x_off=3
                 y_off=2
                 
-                x_resize=220
+                #x_resize=220
+                x_resize=215
                 y_resize=70
                 
                 Resize_xfactor=1.78
