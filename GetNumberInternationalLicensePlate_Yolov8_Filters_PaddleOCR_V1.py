@@ -6,7 +6,7 @@ Created on Mon Apr 25 20:1 7:29 2022
 """
 ######################################################################
 # PARAMETERS
-#####################################################################
+######################################################################
 dir=""
 
 dirname= "test6Training\\images"
@@ -17,6 +17,19 @@ dirname= "test6Training\\images"
 #dirname="C:\\PruebasGithub\\License-Plate-Recognition-YOLOv7-and-CNN-main\\License-Plate-Recognition-YOLOv7-and-CNN-main\\data\\test\\images"
 #dirname="C:\\PruebasGithub\\LicensePlateDetector-master\\LicensePlateDetector-master\\output"
 #dirname="C:\\PruebasGithub\\detectron2-licenseplates-master\\detectron2-licenseplates-master\\datasets\\licenseplates\\images"
+
+
+import cv2
+
+# suggested by Wilbur
+# https://github.com/Saafke/FSRCNN_Tensorflow/tree/master/models
+# https://learnopencv.com/super-resolution-in-opencv/#sec5
+# https://learnopencv.com/super-resolution-in-opencv/
+ocv_model = cv2.dnn_superres.DnnSuperResImpl_create()
+ocv_weight = 'FSRCNN_x4.pb'
+ocv_model.readModel(ocv_weight)
+ocv_model.setModel('fsrcnn', 4)
+
 
 import time
 Ini=time.time()
@@ -42,8 +55,6 @@ from paddleocr import PaddleOCR
 ocr = PaddleOCR(use_angle_cls=True, lang='en', show_log = False) # need to run only once to download and load model into memory
 
 import numpy as np
-
-import cv2
 
 X_resize=220
 Y_resize=70
@@ -216,20 +227,7 @@ def GetPaddleOcr(img):
     
     @author: https://pypi.org/project/paddleocr/ (adapted from)
     """
-    """
-    from google.cloud import vision    
-       
-    client = vision.ImageAnnotatorClient()    
-            
-       
-    #image = vision.Image(content=content)    
-    
-    response = client.text_detection(image=img) 
         
-    texts = response.text_annotations   
-    return texts, 0.5
-    """
-    
     cv2.imwrite("gray.jpg",img)
     img_path = 'gray.jpg'
     #cv2.imshow("gray",img)
@@ -307,7 +305,58 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
     ContLicensesFounded=[]
     
     TotHits=0
-      
+    
+        
+    # https://medium.com/practical-data-science-and-engineering/image-kernels-88162cb6585d
+    kernel = np.ones((2,2),np.uint8)
+    
+    gray1 = cv2.GaussianBlur(gray, (3, 3), 0)
+    gray1 = cv2.dilate(gray1,kernel,iterations = 1)
+    for z in range (10,11):
+        
+       
+        kernel = np.array([[0, -1, 0],
+                       [-1,z, -1],
+                       [0, -1, 0]])
+        dst = cv2.filter2D(gray1, -1, kernel)
+        img_concat = cv2.hconcat([gray1, dst])
+        text, Accuraccy = GetPaddleOcr(img_concat)
+        text = ''.join(char for char in text if char.isalnum())
+        text=ProcessText(text)
+        if ProcessText(text) != "":
+        
+               TabLicensesFounded, ContLicensesFounded =ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
+               if text==License:
+                  print(text + "  Hit with image concat  z= " + str(z))
+                  TotHits=TotHits+1
+               else:
+                   print(License + " detected with Filter image concat "+ text+ " z= "+ str(z)) 
+        
+       
+       
+    
+    gray1= ocv_model.upsample(gray)
+    #cv2.imshow("Ocv",gray1)
+    #cv2.waitKey()
+    text, Accuraccy = GetPaddleOcr(gray1)    
+    text = ''.join(char for char in text if char.isalnum())
+    text=ProcessText(text)
+    if ProcessText(text) != "":
+     
+            TabLicensesFounded, ContLicensesFounded =ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
+            if text==License:
+               print(text + "  Hit with FSRCNN  ")
+               TotHits=TotHits+1
+               TabTotHitsFilter[0]=TabTotHitsFilter[0]+1
+            else:
+                print(License + " detected with Filter FSRCNN "+ text) 
+                TabTotFailuresFilter[0]=TabTotFailuresFilter[0]+1
+    
+    
+  
+    
+   
+    
     gray1=Otsu2Values(gray)
     #cv2.imshow("Otsu2",gray1)
     #cv2.waitKey()
@@ -324,6 +373,7 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
             else:
                 print(License + " detected with Filter Otsu2Values "+ text) 
                 #TabTotFailuresFilter[0]=TabTotFailuresFilter[0]+1
+    
     
     # threshold contrast, author Alfonso Blanco
     # usefull in some cases
@@ -379,31 +429,8 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
                print(License + " detected with Filter equalization "+ text) 
     
    
-    # https://medium.com/practical-data-science-and-engineering/image-kernels-88162cb6585d
-    kernel = np.ones((2,2),np.uint8)
-    
-    gray1 = cv2.GaussianBlur(gray, (3, 3), 0)
-    
-    gray1 = cv2.dilate(gray1,kernel,iterations = 1)
-    kernel = np.array([[0, -1, 0],
-                   [-1,10, -1],
-                   [0, -1, 0]])
-    dst = cv2.filter2D(gray1, -1, kernel)
-    img_concat = cv2.hconcat([gray1, dst])
-    text, Accuraccy = GetPaddleOcr(img_concat)
-    text = ''.join(char for char in text if char.isalnum())
-    text=ProcessText(text)
-    if ProcessText(text) != "":
-    
-           TabLicensesFounded, ContLicensesFounded =ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
-           if text==License:
-              print(text + "  Hit with image concat  ")
-              TotHits=TotHits+1
-           else:
-               print(License + " detected with Filter image concat "+ text) 
     
     
-   
     kernel = np.ones((3,3),np.float32)/90
     gray1 = cv2.filter2D(gray,-1,kernel)   
     #gray_clahe = cv2.GaussianBlur(gray, (5, 5), 0) 
@@ -427,7 +454,7 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
                 print(License + " detected with CLAHE and THRESH_TOZERO as "+ text) 
     
     
-   
+    
     for z in range(5,6):
    
     
@@ -495,7 +522,7 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
         else:
             print(License + " detected with Brightness and THRESH_TOZERO as "+ text)
     
-    
+   
     ################################################################
     return TabLicensesFounded, ContLicensesFounded
 
