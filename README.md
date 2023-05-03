@@ -140,6 +140,12 @@ https://github.com/mrzaizai2k/VIETNAMESE_LICENSE_PLATE
 
 Filters:
 
+https://github.com/Saafke/FSRCNN_Tensorflow/tree/master/models ( downloaded module FSRCNN_x4.pb)
+
+https://learnopencv.com/super-resolution-in-opencv/#sec5
+
+https://learnopencv.com/super-resolution-in-opencv/
+
 https://gist.github.com/endolith/334196bac1cac45a4893#
 
 https://stackoverflow.com/questions/46084476/radon-transformation-in-python
