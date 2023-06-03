@@ -4,14 +4,15 @@ Created on Mon Apr 25 20:1 7:29 2022
 
 @author: Alfonso Blanco
 """
-######################################################################
+#######################################################################
 # PARAMETERS
 ######################################################################
 dir=""
 
-dirname= "test6Training\\images"
+#dirname= "test6Training\\images"
 #dirname= "archiveLabeled"
 #dirname= "C:\\Malos\\images"
+dirname= "Test"
 #dirname= "roboflow\\test\\images"
 #https://github.com/mrzaizai2k/VIETNAMESE_LICENSE_PLATE/tree/master/data/image
 #dirname="C:\\PruebasGithub\\License-Plate-Recognition-YOLOv7-and-CNN-main\\License-Plate-Recognition-YOLOv7-and-CNN-main\\data\\test\\images"
@@ -64,6 +65,8 @@ import re
 
 import imutils
 
+from scipy.signal import convolve2d
+
 # Control filters accuracy
 TabTotHitsFilter=[]
 TabTotFailuresFilter=[]
@@ -85,6 +88,32 @@ import numpy
 from numpy import  mean, array, blackman, sqrt, square
 from numpy.fft import rfft
 
+
+# https://gist.github.com/fubel/ad01878c5a08a57be9b8b80605ad1247
+# comment from  nafe93 modified by Alfonso Blanco
+def Otra_discrete_radon_transform(img): 
+   #steps= img.shape[1] 
+   steps= 90
+   import skimage     
+   # shape
+   h, w = img.shape
+   zero = np.zeros((h, steps), dtype='float64')
+   # sum and roatate
+   for s in range(steps):
+   #for s in range(300):
+      #if s > img.shape[0] -1: break 
+      #rotation = skimage.transform.rotate(img, s, reshape=False).astype('float64')
+      rotation = skimage.transform.rotate(img, s).astype('float64')
+      # sum 
+      #zero[:, s] = np.sum(rotation, axis=0)
+      zero[:, s] = np.sum(rotation)
+      # rotate image 
+      #zero = skimage.transform.rotate(zero, 180).astype('float64') 
+   print(zero.shape)
+   return zero
+
+
+
 try:
     # More accurate peak finding from
     # https://gist.github.com/endolith/255291#file-parabolic-py
@@ -105,7 +134,9 @@ def GetRotationImage(image):
     
     # Do the radon transform and display the result
     sinogram = radon(I)
-   
+    # a   radon from scratch less efficient than radom
+    #sinogram=Otra_discrete_radon_transform(I)
+    
     
     # Find the RMS value of each row and find "busiest" rotation,
     # where the transform is lined up perfectly with the alternating dark
@@ -261,6 +292,21 @@ def GetPaddleOcr(img):
     #print(accuracy)
       
     return licensePlate, accuracy
+
+# https://medium.com/@garciafelipe03/image-filters-and-morphological-operations-using-python-89c5bbb8dca0
+# 5x5 Gaussian Blur
+def gaussian_5x5(img):
+    
+    kernel_gb_5 = (1 / 273) * np.array([[1, 4, 7, 4, 1],
+                                        [4, 16, 26, 16, 4],
+                                        [7, 26, 41, 26, 7],
+                                        [4, 16, 26, 16, 4],
+                                        [1, 4, 7, 4, 1]])
+
+    return convolve2d(img, kernel_gb_5, 'valid')
+
+
+
 #########################################################################
 def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
                        Resize_xfactor, Resize_yfactor, BilateralOption):
@@ -270,7 +316,7 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
     
     gray = cv2.cvtColor(gray, cv2.COLOR_BGR2GRAY)
    
-    TotHits=0  
+    TotHits=0 
     
     X_resize=x_resize
     Y_resize=y_resize
@@ -281,7 +327,8 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
     gray = cv2.resize(gray, (X_resize,Y_resize), interpolation = cv2.INTER_AREA)
     
     
-    
+    # en la mayoria de los casos no es necesaria rotacion
+    # pero en algunos casos si (ver TestRadonWithWilburImage.py)
     rotation, spectrum, frquency =GetRotationImage(gray)
     rotation=90 - rotation
     
@@ -305,6 +352,21 @@ def FindLicenseNumber (gray, x_offset, y_offset,  License, x_resize, y_resize, \
     ContLicensesFounded=[]
     
     TotHits=0
+    
+    
+    gray1=gaussian_5x5(gray)
+    text, Accuraccy = GetPaddleOcr(gray1)
+    text = ''.join(char for char in text if char.isalnum())
+    text=ProcessText(text)
+    if ProcessText(text) != "":
+    
+           TabLicensesFounded, ContLicensesFounded =ApendTabLicensesFounded (TabLicensesFounded, ContLicensesFounded, text)   
+           if text==License:
+              print(text + "  Hit with gaussian_5x5 " )
+              TotHits=TotHits+1
+           else:
+               print(License + " detected with Filter gaussian_5x5 "+ text) 
+    
     
         
     # https://medium.com/practical-data-science-and-engineering/image-kernels-88162cb6585d
@@ -680,9 +742,9 @@ with open( "LicenseResults.txt" ,"w") as  w:
             else:
                 ContDetected=ContDetected+1
                 print(License + " DETECTED ")
-            for i in range(len(TabImgSelect)):
-                if TabImgSelect[i] == []: continue
-                gray=TabImgSelect[i]  
+            for x in range(len(TabImgSelect)):
+                if TabImgSelect[x] == []: continue
+                gray=TabImgSelect[x]  
                 #if len(TabImgSelect) > 1:
                 #    gray=TabImgSelect[1]
                 #cv2.imshow('Frame', gray)
