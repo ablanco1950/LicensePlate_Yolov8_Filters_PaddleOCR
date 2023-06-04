@@ -31,9 +31,8 @@ In that folder you should find the train and valid folders necessary to build th
 
 To ensure the version, the used roboflow file roboflow.zip is attached
 
-Unzip the file with the test images test6Training.zip, taking into account when unzipping you can create a folder
-test6Training inside the test6Training folder,there should be only one test6Training folder, otherwise you will not find the
-test images
+Unzip the files with the test images: Test.zip and test6Training.zip, taking into account when unzipping you can create a folder
+ inside another folder,there should be only one  folder, otherwise programs will not find the test images
 
 Model Train:
 
