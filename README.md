@@ -18,6 +18,8 @@ pip install ultralytics
 
 also must be installed the usual modules in computer vision:  numpy, cv2, os, re, imutils,  parabolic
 
+All needed modules can be installed with a plain pip
+
 Functioning:
 
 
@@ -61,7 +63,7 @@ The car license plates and successes or failures through the different filters a
 
 The LicenseResults.txt file lists the car license plates with their corresponding recognized ones.
 
-The combination of the efficiency of paddleocr and the plate detection precision of a simple yolov8 on Roboflow images, together with an adequate selection of filters, allows us to obtain a comparison of the plates recognized with the best license plate detector I know: https: //www.doubango.org/webapps/alpr/ which is included in the attached Excel file ComparisonWithDOUBANGO.xls, testing with the images contained in the attached Test file
+The combination of the efficiency of paddleocr and the plate detection precision of a simple yolov8 on Roboflow images, together with an adequate selection of filters, allows us to obtain a comparison of the plates recognized with the best license plate detector I know: https: //www.doubango.org/webapps/alpr/ which is included in the attached Excel file: ComparisonWithDOUBANGO.xls, testing with the images contained in the attached Test directory
 
 By changing the path in instruction 12,activating the directory "test6Training\\images" an deactivating the path "Test" in instruction 15:In a test with 117 images, 105 hits are achieved
 In the same manner any other image directory can be tested (In this case, the LicenseResults.txt file must be consulted to indicate the licenses plates, if the files  are not named with the license number, as in test6Training occurs, it cannot be determined if the assignment was successful automatically)
