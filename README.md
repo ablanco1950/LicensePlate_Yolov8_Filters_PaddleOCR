@@ -14,6 +14,14 @@ pip install paddleocr
 yolo must be installed, if not, follow the instructions indicated in:
   https://learnopencv.com/ultralytics-yolov8/#How-to-Use-YOLOv8?
 
+paddleocr at 29/07/2025 is incompatible with numpy 2.0
+
+downgrade numpy
+
+pip uninstall numpy
+
+pip install numpy==1.26
+
 pip install ultralytics
 
 also must be installed the usual modules in computer vision:  numpy, cv2, os, re, imutils,  parabolic
