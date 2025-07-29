@@ -743,7 +743,8 @@ with open( "LicenseResults.txt" ,"w") as  w:
                 ContDetected=ContDetected+1
                 print(License + " DETECTED ")
             for x in range(len(TabImgSelect)):
-                if TabImgSelect[x] == []: continue
+                #if TabImgSelect[x] == []: continue
+                if len(TabImgSelect[x]) == 0: continue
                 gray=TabImgSelect[x]  
                 #if len(TabImgSelect) > 1:
                 #    gray=TabImgSelect[1]
