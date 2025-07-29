@@ -7,6 +7,14 @@ On 04/27/2023, a new version is incorporated that considers license plates with 
  
 Requirements:
 
+The best: create a new environment an install the attached requirements.txt file
+
+pip install requirements.txt
+
+Manually would be, more o less:
+
+==============================================================================
+
 paddleocr must be installed ( https://pypi.org/project/paddleocr/)
 
 pip install paddleocr 
@@ -27,6 +35,8 @@ pip install ultralytics
 also must be installed the usual modules in computer vision:  numpy, cv2, os, re, imutils,  parabolic
 
 All needed modules can be installed with a plain pip
+
+===================================================================================================================
 
 Functioning:
 
