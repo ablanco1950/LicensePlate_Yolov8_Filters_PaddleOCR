@@ -7,34 +7,35 @@ On 04/27/2023, a new version is incorporated that considers license plates with 
  
 Requirements:
 
-The best: create a new environment an install the attached requirements.txt file
+Update a 01/08/2025
 
-pip install requirements.txt
+in a new environment in the directory scripts (requirements.txt show problems with dependencies) ignoring the messages in red color.
 
-Manually would be, more o less:
+python pip-script.py install ultralytics
 
-==============================================================================
+python pip-script.py uninstall opencv-python
 
-paddleocr must be installed ( https://pypi.org/project/paddleocr/)
+python pip3-script.py install opencv-contrib-python  (be careful IS PIP3)
 
-pip install paddleocr 
+python pip-script.py install decorator
 
-yolo must be installed, if not, follow the instructions indicated in:
-  https://learnopencv.com/ultralytics-yolov8/#How-to-Use-YOLOv8?
+python pip-script.py install protobuf==3.20
 
-paddleocr at 29/07/2025 is incompatible with numpy 2.0
+python pip-script.py install shapely
 
-downgrade numpy
+python pip-script.py install pyclipper
 
-pip uninstall numpy
+python pip-script.py install scikit-image
 
-pip install numpy==1.26
+python pip-script.py uninstall numpy
 
-pip install ultralytics
+python pip-script.py install numpy==1.23
 
-also must be installed the usual modules in computer vision:  numpy, cv2, os, re, imutils,  parabolic
+python pip-script.py install lmdb
 
-All needed modules can be installed with a plain pip
+python pip-script.py install imutils
+
+
 
 ===================================================================================================================
 
