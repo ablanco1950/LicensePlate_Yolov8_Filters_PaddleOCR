@@ -82,7 +82,7 @@ The car license plates and successes or failures through the different filters a
 
 The LicenseResults.txt file lists the car license plates with their corresponding recognized ones.
 
-The combination of the efficiency of paddleocr and the plate detection precision of a simple yolov8 on Roboflow images, together with an adequate selection of filters, allows us to obtain a comparison of the plates recognized with the betrs license plate detectors I know: https: //www.doubango.org/webapps/alpr/  and https://huggingface.co/spaces/ankandrew/fast-alpr which is included in the attached Excel file: ComparisonWithDOUBANGOAndHuggingFace.xls, testing with the images contained in the attached Test directory
+The combination of the efficiency of paddleocr and the plate detection precision of a simple yolov8 on Roboflow images, together with an adequate selection of filters,this allows for a comparison of recognized license plates using the best license plate detectors I know: https://www.doubango.org/webapps/alpr/ and https://huggingface.co/spaces/ankandrew/fast-alpr, which is included in the attached Excel file: ComparisonWithDOUBANGOAndHuggingFace.xls, testing with the images contained in the attached Test directory.
 
 By changing the path in instruction 12,activating the directory "test6Training\\images" an deactivating the path "Test" in instruction 15: In a test with 117 images, 107 hits are achieved
 In the same manner any other image directory can be tested (In this case, the LicenseResults.txt file must be consulted to indicate the licenses plates, if the files  are not named with the license number, as in test6Training occurs, it cannot be determined if the assignment was successful automatically)
