@@ -25,6 +25,8 @@ An Excel spreadsheet, ComparisonWithDOUBANGOAndHuggingFace.xls, is attached with
 
 It comes pre-configured to test with images from the Test folder. By changing line 18 of the program, you can test with any image folder.
 
+The template for obtaining the license plate box is attached as best.pt if you wish to practice and obtain it again:
+
 Model Train:
 
 the train and valid folders of the roboflow folder, resulting from the unziping of robflow.zip, must be placed in the same directory where the execution program LicensePlateYolov8Train.py is located, according to the requirements indicated in license_data.yaml
@@ -42,7 +44,6 @@ As a result, inside the project folder, the directory runs\detect\trainN\weights
  the last train directory created, in which the best.pt file is located), best.pt is the base of the model and
  is referenced in line 17 of the GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py program (modify the route, the name of trainN, so that it points to the last train and best.pt created
 
-As obtaining best.pt is problematic, the one used in the project tests is attached,it must be  adjusted the route in instruction 17 in GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
 
 OLDS VERSIONS
 =======================================================================================================================================
