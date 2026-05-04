@@ -1,6 +1,51 @@
 # LicensePlate_Yolov8_Filters_PaddleOCR
 Recognition of license plate numbers, in any format, by automatic detection with Yolov8, pipeline of filters and  paddleocr as OCR
 
+04/05/2026 Adaptation to version 3.5 of Paddle OCR for CPU
+
+Download all project files to disk and extract the .zip files.
+
+Install, preferably in a fresh environment, to avoid incompatibilities with older versions that may be running.
+
+The requirements.txt file is attached for installation (pip install -r requirements.txt), or you can install at least:
+
+paddleocr==3.5.0
+
+paddlepaddle==3.3.1
+
+and install the remaining modules as you receive "module not found" messages.
+
+Test:
+
+Run the program:
+
+GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR_V3.py
+
+An Excel spreadsheet, ComparisonWithDOUBANGOAndHuggingFace.xls, is attached with the results and a comparison to other systems.
+
+It comes pre-configured to test with images from the Test folder. By changing line 18 of the program, you can test with any image folder.
+
+Model Train:
+
+the train and valid folders of the roboflow folder, resulting from the unziping of robflow.zip, must be placed in the same directory where the execution program LicensePlateYolov8Train.py is located, according to the requirements indicated in license_data.yaml
+
+run the program
+
+LicensePlateYolov8Train.py
+
+which only has a few lines, but the line numbered 7 should indicate the full path where the license_data.yaml file is located.
+
+Running from a simple laptop, the 100 epochs of the program will take a long time, but you can always lower the cover of the laptop and
+continue the next day (besides, there are only 245 images for training). As obtaining best.pt is problematic, the one used in the project tests is attached.
+
+As a result, inside the project folder, the directory runs\detect\trainN\weights( where in trainN, N indicates
+ the last train directory created, in which the best.pt file is located), best.pt is the base of the model and
+ is referenced in line 17 of the GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py program (modify the route, the name of trainN, so that it points to the last train and best.pt created
+
+As obtaining best.pt is problematic, the one used in the project tests is attached,it must be  adjusted the route in instruction 17 in GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR.py
+
+OLDS VERSIONS
+=======================================================================================================================================
 The main improvement with respect to the project presented before ( https://github.com/ablanco1950/LicensePlate_Yolov8_MaxFilters) has been the use of paddleocr instead of pytesseract as well as the reduction of the number of filters, some of which although they were right in certain circumstances produced noise in other.
 
 On 04/27/2023, a new version is incorporated that considers license plates with several lines and several license plates in one image.
