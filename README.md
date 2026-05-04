@@ -21,6 +21,10 @@ Run the program:
 
 GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR_V3.py
 
+The car license plates and successes or failures through the different filters appear on the screen.
+
+The LicenseResults.txt file lists the car license plates with their corresponding recognized ones.
+
 An Excel spreadsheet, ComparisonWithDOUBANGOAndHuggingFace.xls, is attached with the results and a comparison to other systems.
 
 It comes pre-configured to test with images from the Test folder. By changing line 18 of the program, you can test with any image folder.
