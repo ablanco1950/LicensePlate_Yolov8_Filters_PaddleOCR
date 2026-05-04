@@ -213,6 +213,8 @@ https: //www.doubango.org/webapps/alpr/
 
 https://huggingface.co/spaces/ankandrew/fast-alpr
 
+https://github.com/tungedng2710/AI-Traffic-Analysis (appear changes for paddleocr 3.5)
+
 
 Filters:
 
