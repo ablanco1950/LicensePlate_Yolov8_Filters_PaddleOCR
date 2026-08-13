@@ -29,7 +29,7 @@ Evaluation, running:
 
 python GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR-VL.py
 
-For console appears the results and a comparison with other system in 
+For console appears the results and a comparison with other systems in ComparisonWithDOUBANGOAndHuggingFace.xls
 
 
 04/05/2026
