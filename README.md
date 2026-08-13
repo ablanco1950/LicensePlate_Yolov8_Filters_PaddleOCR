@@ -25,7 +25,7 @@ pip install scipy
 
 pip install scikit-image
 
-Evaluation, running
+Evaluation, running:
 
 python GetNumberInternationalLicensePlate_Yolov8_Filters_PaddleOCR-VL.py
 
