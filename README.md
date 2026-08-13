@@ -1,4 +1,4 @@
-# LicensePlate_Yolov8_Filters_PaddleOCR
+https://github.com/ablanco1950/LicensePlate_Yolov8_Filters_PaddleOCR/pulse# LicensePlate_Yolov8_Filters_PaddleOCR
 Recognition of license plate numbers, in any format, by automatic detection with Yolov8, pipeline of filters and  paddleocr as OCR
 
 13/08/2026
@@ -12,7 +12,7 @@ Enviroment with python 3.12
 pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 The Program was tested to cpu
 
-# if  gpu     • Para GPU (example CUDA 12.6):
+if  gpu     • Para GPU (example CUDA 12.6):
 pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/  # Using cpu
 
 pip install "paddleocr>=3.7.0"
